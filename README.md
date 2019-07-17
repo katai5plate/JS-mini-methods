@@ -27,6 +27,37 @@ const chunk = (arr, size) => {
 // -> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
 ```
 - https://github.com/30-seconds/30-seconds-of-code#chunk
+### CSVをJSONに変換
+```js
+const CSVToJSON = (data, delimiter = ',') => {
+  const titles = data.slice(0, data.indexOf('\n')).split(delimiter);
+  return data
+    .slice(data.indexOf('\n') + 1)
+    .split('\n')
+    .map(v => {
+      const values = v.split(delimiter);
+      return titles.reduce((obj, title, index) => ((obj[title] = values[index]), obj), {});
+    });
+};
+```
+- https://github.com/30-seconds/30-seconds-of-code#csvtojson-
+### 配列の要素と長さを維持したまま前後にずらす
+```js
+const offset = (arr, offset) => [...arr.slice(offset), ...arr.slice(0, offset)];
+```
+- https://github.com/30-seconds/30-seconds-of-code#offset
+### 配列をシャッフル
+```js
+const shuffle = ([...arr]) => {
+  let m = arr.length;
+  while (m) {
+    const i = Math.floor(Math.random() * m--);
+    [arr[m], arr[i]] = [arr[i], arr[m]];
+  }
+  return arr;
+};
+```
+- https://github.com/30-seconds/30-seconds-of-code#shuffle
 ## ➗ 算術系
 ### 点と点を結ぶ中継地点の座標を算出
 ```js
