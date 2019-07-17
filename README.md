@@ -28,10 +28,34 @@ const chunk = (arr, size) => {
 // -> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
 ```
 ## ➗ 算術系
+### 点と点を結ぶ中継地点の座標を算出
+```
+const lerp = (a, x, y) => (x, y, a) => x + (y - x) * a;
+const lerp2D = (a, { x: x1, y: y1 }, { x: x2, y: y2 }) => {
+  const calc = (x, y, a) => x + (y - x) * a;
+  return { x: calc(x1, x2, a), y: calc(y1, y2, a) };
+};
+const lerp3D = (a, { x: x1, y: y1, z: z1 }, { x: x2, y: y2, z: z2 }) => {
+  const calc = (x, y, a) => x + (y - x) * a;
+  return { x: calc(x1, x2, a), y: calc(y1, y2, a), z: calc(z1, z2, a) };
+};
+
+// lerp(0.5, 0, 2);
+// -> 1
+```
 ## 📦 DOM操作系
-## 🌐 通信系
+## 🌐 通信/ブラウザ系
+### URLパラメータ(クエリ文字列)を取得
+- https://github.com/30-seconds/30-seconds-of-code#geturlparameters
+```
+const getURLParams = url =>
+  (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
+    (a, v) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+    {}
+  );
+```
 ## 🔧 その他
-### BrainFuckをJavaScriptにコンパイル
+### BrainfuckをJavaScriptにコンパイル
 ```js
 const bf2js = bf =>
   `(async()=>{var p=[],c=0,i="",w=()=>new Promise(r=>setTimeout(r,1));document.onkeydown=e=>i=e.key.charCodeAt();${bf.replace(
