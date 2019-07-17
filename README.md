@@ -16,7 +16,6 @@ const chunkString = (str, size) => {
 ```
 ## 🗃️ データ操作系
 ### 指定した数で配列を分割
-- https://github.com/30-seconds/30-seconds-of-code#chunk
 ```js
 const chunk = (arr, size) => {
   return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -27,9 +26,10 @@ const chunk = (arr, size) => {
 // chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 3); 
 // -> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
 ```
+- https://github.com/30-seconds/30-seconds-of-code#chunk
 ## ➗ 算術系
 ### 点と点を結ぶ中継地点の座標を算出
-```
+```js
 const lerp = (a, x, y) => (x, y, a) => x + (y - x) * a;
 const lerp2D = (a, { x: x1, y: y1 }, { x: x2, y: y2 }) => {
   const calc = (x, y, a) => x + (y - x) * a;
@@ -44,16 +44,29 @@ const lerp3D = (a, { x: x1, y: y1, z: z1 }, { x: x2, y: y2, z: z2 }) => {
 // -> 1
 ```
 ## 📦 DOM操作系
+### テーブルをオブジェクトに変換
+```js
+const tableToObject = table =>
+  [...table.querySelectorAll('tr')]
+    .map(({ children }) => [...[...children].map(({ innerText }) => innerText)])
+    .map((row, _, self) =>
+      self[0].reduce((p, c, i) => ({ ...p, [c]: row.slice('-4')[i] }), {})
+    )
+    .slice(1);
+
+// const table = document.querySelector('table');
+// tableToObject(table);
+```
 ## 🌐 通信/ブラウザ系
 ### URLパラメータ(クエリ文字列)を取得
-- https://github.com/30-seconds/30-seconds-of-code#geturlparameters
-```
+```js
 const getURLParams = url =>
   (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
     (a, v) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
     {}
   );
 ```
+- https://github.com/30-seconds/30-seconds-of-code#geturlparameters
 ## 🔧 その他
 ### BrainfuckをJavaScriptにコンパイル
 ```js
