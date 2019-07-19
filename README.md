@@ -99,6 +99,11 @@ const getURLParams = url =>
 ```
 - https://github.com/30-seconds/30-seconds-of-code#geturlparameters
 ## 🔧 その他
+### 数秒待つ
+```js
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+// await sleep(1000);
+```
 ### BrainfuckをJavaScriptにコンパイル
 ```js
 const bf2js = bf =>
