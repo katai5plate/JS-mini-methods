@@ -89,6 +89,17 @@ const tableToObject = table =>
 // tableToObject(table);
 ```
 ## 🌐 通信/ブラウザ系
+### Fetch APIをラップしてログを取得
+```js
+window._fetch = window._fetch ? window._fetch : window.fetch;
+delete window.fetch;
+window.fetch = (...args) => {
+  console.log(...args);
+  const returns = window._fetch(...args);
+  returns.then(res => res.text()).then(res => console.log(res))
+  return returns;
+}
+```
 ### URLパラメータ(クエリ文字列)を取得
 ```js
 const getURLParams = url =>
