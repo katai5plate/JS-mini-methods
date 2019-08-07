@@ -58,7 +58,7 @@ const shuffle = ([...arr]) => {
 };
 ```
 - https://github.com/30-seconds/30-seconds-of-code#shuffle
-### 手順と可能性を記録した配列を総当り
+### 固定の手順と各々の分岐を記録した配列を総当り
 ```js
 const bruteForce = (...[a, ...[b, ...rest]]) => b
   ? bruteForce(b.reduce((acc, x) => [...acc, ...a.map(y => [...y, ...x])], []), ...rest)
@@ -67,16 +67,16 @@ const bruteForce = (...[a, ...[b, ...rest]]) => b
 ```js
 const data = [
   [ // 手順1
-    [1, 2], // 可能性1
-    [3]     // 可能性2
+    [1, 2], // 分岐1
+    [3]     // 分岐2
   ],
   [ // 手順2
-    [4]     // 可能性1
+    [4]     // 分岐1
   ],
   [ // 手順3
-    [5, 6], // 可能性1
-    [7],    // 可能性2
-    [8, 9]  // 可能性3
+    [5, 6], // 分岐1
+    [7],    // 分岐2
+    [8, 9]  // 分岐3
   ]
 ]
 bruteForce(...data);
