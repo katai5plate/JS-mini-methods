@@ -63,6 +63,7 @@ const shuffle = ([...arr]) => {
 const bruteForce = (...[a, ...[b, ...rest]]) => b
   ? bruteForce(b.reduce((acc, x) => [...acc, ...a.map(y => [...y, ...x])], []), ...rest)
   : a;
+
 // const data = [[[1, 2], [3]], [[4]], [[5, 6], [7], [8, 9]]];
 // combinate(...data); 
 // -> [[1, 2, 4, 5, 6], [3, 4, 5, 6], [1, 2, 4, 7], [3, 4, 7], [1, 2, 4, 8, 9], [3, 4, 8, 9]]
