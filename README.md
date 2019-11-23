@@ -15,6 +15,14 @@ const chunkString = (str, size) => {
 // -> ["123", "456", "789", "0"]
 ```
 ## 🗃️ データ操作系
+### ネストされたオブジェクト内の値をドット区切り文字列で参照する
+```js
+const nestPicker = (obj, selector, delim = ".") =>
+  selector.split(delim).reduce((p, c) => p[c], obj);
+
+// var obj = {a: {b: {c: 1, f: 4}, e: 3}, d: 2}
+// nestPicker(obj, "a.b.c") -> 1
+```
 ### 指定した数で配列を分割
 ```js
 const chunk = (arr, size) => {
