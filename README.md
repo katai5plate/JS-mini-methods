@@ -149,12 +149,32 @@ const getURLParams = url =>
   );
 ```
 - https://github.com/30-seconds/30-seconds-of-code#geturlparameters
-## 🔧 その他
+## ⌚ 非同期処理系
 ### 数秒待つ
 ```js
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 // await sleep(1000);
 ```
+### パラメータだけ異なる関数を非同期で順次実行する
+```js
+const promiseStep = async (list, cb, ms) => {
+  let res = [];
+  for(const elm of list){
+    res.push(await new Promise(r => {
+      setTimeout(async () => {
+        r(await cb(elm));
+      }, ms);
+    }))
+  }
+  return res;
+}
+// await promiseStep(
+//   ["https://github.com/", "https://github.com/katai5plate/"],
+//   async url => (await fetch(url)).text(),
+//   1000
+// );
+```
+## 🔧 その他
 ### BrainfuckをJavaScriptにコンパイル
 ```js
 const bf2js = bf =>
