@@ -25,11 +25,15 @@ const nestPicker = (obj, selector, delim = ".") =>
 ```
 ### 指定した数で配列を分割
 ```js
-const chunk = (arr, size) => {
+const chunk1 = (arr, size) => {
   return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
   ).map(v => v.join(''));
 }
+const chunk2 = (arr, size) =>
+  arr
+    .map((_, i) => arr.slice(i * size, i * size + size))
+    .filter((x) => x.length);
 
 // chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 3); 
 // -> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
